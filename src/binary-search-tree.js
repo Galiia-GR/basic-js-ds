@@ -119,16 +119,30 @@ has(data) {
         }
       }
 
-  min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
 
-  max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-}
+      min() {
+        if (!this.root){
+          return;
+        } let minNodeIn=this.root;
+        while (minNodeIn.left) {
+          minNodeIn=minNodeIn.left;
+        }
+
+        console.log(minNodeIn.data);
+        return minNodeIn.data;
+          }
+
+          max() {
+            if (!this.root){
+              return;
+            } let maxNodeIn=this.root;
+            while (maxNodeIn.right) {
+              maxNodeIn=maxNodeIn.right;
+            }
+            console.log(maxNodeIn.data);
+            return maxNodeIn.data;
+          }
+        }
 
 module.exports = {
   BinarySearchTree
