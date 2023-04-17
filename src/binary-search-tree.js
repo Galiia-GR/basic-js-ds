@@ -6,6 +6,8 @@ const { NotImplementedError } = require('../extensions/index.js');
 * Implement simple binary search tree according to task description
 * using Node from extensions
 */
+
+
 class Node{
   constructor(data){
     this.data=data;
@@ -17,12 +19,16 @@ class Node{
 class BinarySearchTree {
 
  constructor() {
-this.root=null;
+this.rootEl=null;
+  }
+
+  root() {
+    return this.rootEl;
   }
 
   add(data) {
 
-    this.root=addNodeIn(this.root, data)
+    this.rootEl=addNodeIn(this.rootEl, data)
 
 
 function addNodeIn(node, data) {
@@ -45,7 +51,7 @@ function addNodeIn(node, data) {
 
 }
 has(data) {
-  return searchNodeIn(this.root, data);
+  return searchNodeIn(this.rootEl, data);
 
   function searchNodeIn(node, data){
     if (!node){
@@ -60,7 +66,7 @@ has(data) {
     }
 
     find(data) {
-      return findNodeIn(this.root, data);
+      return findNodeIn(this.rootEl, data);
 
       function findNodeIn(node, data){
         if (!node){
@@ -75,7 +81,7 @@ has(data) {
     }
 
     remove(data) {
-      this.root=removeNodeIn(this.root, data);
+      this.rootEl=removeNodeIn(this.rootEl, data);
       function removeNodeIn(node, data){
         if (!node){
           return null;
@@ -121,9 +127,9 @@ has(data) {
 
 
       min() {
-        if (!this.root){
+        if (!this.rootEl){
           return;
-        } let minNodeIn=this.root;
+        } let minNodeIn=this.rootEl;
         while (minNodeIn.left) {
           minNodeIn=minNodeIn.left;
         }
@@ -133,9 +139,9 @@ has(data) {
           }
 
           max() {
-            if (!this.root){
+            if (!this.rootEl){
               return;
-            } let maxNodeIn=this.root;
+            } let maxNodeIn=this.rootEl;
             while (maxNodeIn.right) {
               maxNodeIn=maxNodeIn.right;
             }
@@ -143,7 +149,6 @@ has(data) {
             return maxNodeIn.data;
           }
         }
-
 module.exports = {
   BinarySearchTree
 };
