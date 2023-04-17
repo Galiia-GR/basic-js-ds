@@ -44,10 +44,21 @@ function addNodeIn(node, data) {
 }
 
 }
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
+has(data) {
+  return searchNodeIn(this.root, data);
+
+  function searchNodeIn(node, data){
+    if (!node){
+      return false;
+    }
+    if (node.data===data){
+      return true;
+    }
+
+    return data < node.data ? searchNodeIn(node.left, data) : searchNodeIn (node.right, data)
+    }
+    }
+
 
   find(/* data */) {
     throw new NotImplementedError('Not implemented');
