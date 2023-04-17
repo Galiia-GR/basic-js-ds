@@ -1,6 +1,6 @@
 const { NotImplementedError } = require("../extensions/index.js");
 
-// const { Node } = require('../extensions/list-tree.js');
+//const { Node } = require("../extensions/list-tree.js");
 
 /**
  * Implement simple binary search tree according to task description
@@ -14,7 +14,6 @@ class Node {
     this.right = null;
   }
 }
-
 class BinarySearchTree {
   constructor() {
     this.rootEl = null;
@@ -41,13 +40,11 @@ class BinarySearchTree {
       } else {
         node.right = addNodeIn(node.right, data);
       }
-      console.log(node);
       return node;
     }
   }
-  has(data) {
-    return searchNodeIn(this.rootEl, data);
 
+  has(data) {
     function searchNodeIn(node, data) {
       if (!node) {
         return false;
@@ -55,16 +52,16 @@ class BinarySearchTree {
       if (node.data === data) {
         return true;
       }
-
-      return data < node.data
-        ? searchNodeIn(node.left, data)
-        : searchNodeIn(node.right, data);
+      if (node.data > data) {
+        return searchNodeIn(node.left, data);
+      } else {
+        return searchNodeIn(node.right, data);
+      }
     }
+    return searchNodeIn(this.rootEl, data);
   }
 
   find(data) {
-    return findNodeIn(this.rootEl, data);
-
     function findNodeIn(node, data) {
       if (!node) {
         return null;
@@ -72,11 +69,13 @@ class BinarySearchTree {
       if (node.data === data) {
         return data;
       }
-
-      return data < node.data
-        ? findNodeIn(node.left, data)
-        : findNodeIn(node.right, data);
+      if (node.data > data) {
+        return findNodeIn(node.left, data);
+      } else {
+        return findNodeIn(node.right, data);
+      }
     }
+    return findNodeIn(this.rootEl, data);
   }
 
   remove(data) {
@@ -96,6 +95,7 @@ class BinarySearchTree {
         if (!node.left && !node.right) {
           return null;
         }
+
         if (!node.left) {
           node = node.right;
           return node;
