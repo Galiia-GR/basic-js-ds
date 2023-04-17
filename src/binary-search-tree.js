@@ -23,6 +23,10 @@ this.rootEl=null;
   }
 
   root() {
+
+     if(!this.rootEl){
+    return null;}
+
     return this.rootEl;
   }
 
@@ -82,6 +86,7 @@ has(data) {
 
     remove(data) {
       this.rootEl=removeNodeIn(this.rootEl, data);
+
       function removeNodeIn(node, data){
         if (!node){
           return null;
@@ -89,18 +94,18 @@ has(data) {
       if (data < node.data){
         node.left=removeNodeIn(node.left, data);
         return node;
-      } else if (data > node.data){
+      } else if (node.data < data){
         node.right=removeNodeIn(node.right, data);
         return node;
-      } else{
 
+      } else{
         if (!node.left && !node.right) {
       return null;
         }
-
         if (!node.left) {
           node=node.right;
-        return node; }
+        return node;
+       }
 
         if (!node.right) {
           node=node.left;
@@ -109,8 +114,6 @@ has(data) {
 
       let minFromRightNode=node.right;
 
-      console.log(minFromRightNode);
-
       while (minFromRightNode.left){
         minFromRightNode=minFromRightNode.left;
         }
@@ -118,9 +121,7 @@ has(data) {
         node.data=minFromRightNode.data;
 
         node.right=removeNodeIn(node.right, minFromRightNode.data)
-
         return node;
-
       }
         }
       }
