@@ -38,9 +38,12 @@ class Queue {
   }
 
   dequeue() {
-    let nodeCurrent = this.head;
-    this.head = this.next;
-    return nodeCurrent;
+    if (this.length === 0) {
+      return null;
+    }
+    let nodeMove = this.head.value;
+    this.head = this.head.next;
+    return nodeMove;
   }
 }
 
